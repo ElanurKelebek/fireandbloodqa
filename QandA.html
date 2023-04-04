@@ -54,12 +54,12 @@
 </head>
 <body>
 	<h1>Q&A Pairs</h1>
-	<select id="question">
+	<select id="Question">
 		<option value="">Select a question</option>
 	</select>
-	<div id="answer"></div>
+	<div id="Answer"></div>
 	<script>
-		var select = document.getElementById("question");
+		var select = document.getElementById("Question");
 		var xhr = new XMLHttpRequest();
 		xhr.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
@@ -67,22 +67,22 @@
 				var questions = {};
 				for (var i = 0; i < data.length; i++) {
 					var row = data[i].split(",");
-					var question = row[0];
-					var answer = row[1];
-					questions[question] = answer;
-					select.options[select.options.length] = new Option(question, question);
+					var Question = row[0];
+					var Answer = row[1];
+					questions[Question] = Answer;
+					select.options[select.options.length] = new Option(Question, Question);
 				}
 				select.addEventListener("change", function() {
-					var question = select.value;
-					if (question != "") {
-						document.getElementById("answer").innerHTML = questions[question];
+					var Question = select.value;
+					if (Question != "") {
+						document.getElementById("Answer").innerHTML = questions[Question];
 					} else {
-						document.getElementById("answer").innerHTML = "";
+						document.getElementById("Answer").innerHTML = "";
 					}
 				});
 			}
 		};
-		xhr.open("GET", "questionANDans.csv", true);
+		xhr.open("GET", "q_and_a.csv", true);
 		xhr.send();
 	</script>
 </body>
